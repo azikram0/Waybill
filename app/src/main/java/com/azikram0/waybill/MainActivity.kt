@@ -31,7 +31,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.azikram0.waybill.ui.theme.Blue
@@ -133,7 +135,7 @@ fun MainScreen() {
 
 @Composable
 private fun ResultScreen(fuelLeftAfter: String, onBackClickListener: () -> Unit) {
-    Column(modifier = Modifier.padding(16.dp)) {
+    Column(modifier = Modifier.padding(20.dp)) {
         Text(fuelLeftAfter, fontSize = 18.sp)
         Spacer(modifier = Modifier.padding(6.dp))
         Button(
@@ -145,7 +147,11 @@ private fun ResultScreen(fuelLeftAfter: String, onBackClickListener: () -> Unit)
             onClick = onBackClickListener,
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("Назад")
+            Text(
+                text = "Назад",
+                fontSize = 18.sp,
+                modifier = Modifier.padding(top = 6.dp, bottom = 6.dp)
+            )
         }
     }
     BackHandler { onBackClickListener() }
@@ -163,6 +169,13 @@ private fun InputScreen(
     onCalculateClickListener: () -> Unit
 ) {
     Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        Text(
+            text = "Расчет остатка топлива",
+            fontSize = 28.sp,
+            modifier = Modifier.fillMaxWidth(),
+            textAlign = TextAlign.Center,
+            fontWeight = FontWeight.Bold
+        )
         FuelInputField("Начальный километраж (км)", kmBefore, onKmBeforeChange)
         FuelInputField("Конечный километраж (км)", kmAfter, onKmAfterChange)
         FuelInputField("Остаток топлива перед выездом (л)", fuelLeftBefore, onFuelLeftBeforeChange)
@@ -190,7 +203,11 @@ private fun InputScreen(
             onClick = onCalculateClickListener,
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text(text = "Рассчитать", fontSize = 18.sp)
+            Text(
+                text = "Рассчитать",
+                fontSize = 18.sp,
+                modifier = Modifier.padding(top = 6.dp, bottom = 6.dp)
+            )
         }
     }
 }
